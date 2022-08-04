@@ -6,11 +6,12 @@
 /*   By: tmongell <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/04/16 18:15:22 by tmongell          #+#    #+#             */
-/*   Updated: 2022/04/16 18:23:40 by tmongell         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:03:52 by tmongell         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
+#include <unistd.h>
 #include <string.h>
 
 char	*strjoin(char const *s1, char const *s2)
@@ -33,13 +34,14 @@ int	main(int ac, char **av)
 {
 	char	*process;
 	char	*cmd;
+	char	std_err[1];
 
 	if (ac == 2)
 		process = av[1];
 	else
 		process = strdup("a.out");
 	cmd = strjoin("leaks ", process);
-	while (1)
+	while (!read(2, std_err, 1))
 		system(cmd);
 }
 
