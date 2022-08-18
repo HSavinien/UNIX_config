@@ -6,7 +6,7 @@ PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;94m%}%3~%{\e[0m%}:%{\e[0;1;7;32m%}[%T]%{\e[0m%}\
 
 #vars
 export PATH=$PATH:$HOME/bin
-work="~/Desktop/WiP/minishell"
+work="~/Desktop/WiP/philosopher"
 #alias
 
 alias sep="echo '\e[33m=========================================================================================\e[m'"
@@ -33,7 +33,9 @@ alias evening="git add * && git commit -m 'end of day' && (git push origin maste
 alias evac="git add * && git commit -m 'this is an emergency commit' && (git push origin master ; git push perso master)"
 alias nbcommit="git log | grep Author: | wc -l"
 alias zouii="curl parrot.live"
-
+alias guillaume="echo 'Bonjour, comment vas-tu ?'"
+alias chloe="echo 'Pas, toi !'"
+alias showbug="cat known_bugs| grep -v '(solved)'"
 
 #makefile creation alias
 alias mf-saveold="mv ./Makefile ./.Makefile.old"
@@ -58,9 +60,11 @@ alias la="ls -AG"
 alias ll="ls -lhG"
 alias lla="ls -AGlh"
 alias ls="ls -G"
+alias glast="git log -1"
 
 #big finger alias
 alias vin=vim
+
 
 #script alias (to call them without .sh)
 alias chklst="Sep ; checklist.sh"
@@ -81,3 +85,16 @@ export PATH=$PATH:/Users/tmongell/.brew/bin:/Users/tmongell/.brew/bin:/usr/local
 #echo "/usr/share/pool/taquin" >> ~/.zshrc
 
 #alias lol="echo $'\e[7;41mWARNING :\e[0;31m this action is ilegal. Report to the Bocal imediatly for diciplinary actions\e[0m\n\n' ; say 'this action is ilegal. Report to the Bocal immediately for diciplinary actions' ; Say -v Thomas 'cette action est ilegal. Presentez vous au bocal imediatement pour votre punition' ; sleep 1000"
+
+# HSTR configuration - add this to ~/.zshrc
+alias hh=hstr                    # hh to be alias forstory -r
+setopt histignorespace           # skip cmds w/ leading space from history
+setopt histignorealldups         # no duplicate
+#setopt share_history
+export HSTR_CONFIG=monochromatic
+export HSTR_CONFIG=hicolor       # get more colors
+bindkey -s "\C-r" "\C-a hstr -- \C-j"     # bind hstr to Ctrl-r (for Vi mode check doc)
+export HISTFILE=~/.zsh_history
+export HISTSIZE=10000
+export SAVEHIST=${HISTSIZE}
+export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
