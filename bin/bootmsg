@@ -1,0 +1,63 @@
+#!/bin/bash
+
+help_fct(){
+	echo "bootmsg is meant to store a short message that your shell will display
+	on start. you can display the curently stored msg with showbootmsg.
+	usage : bootmsg[-h -r -a][msg]
+	if no msg is specified, bootmsg will read user input.
+	
+	arguments :
+		-a (append) :
+			add new mesage at the end of previous message, rather than removing previous message.
+		-e (edit) :
+			open msg with user defined editor (default vim). 
+			editor can be changed by updating environement variable $BOOTMSG_EDITOR.
+		   	to change your default editor, export it from your bashrc/zshrc file
+		-r (remove) :
+			remove message without replacing it.
+		-h (help) : 
+			display this help page.
+		"
+}
+
+if [ -z "$BOOTMSG_EDITOR" ]
+then
+	export BOOTMSG_EDITOR=vim
+fi
+
+if [ "$1" = -e ]
+then
+	$BOOTMSG_EDITOR ~/.bootmsg
+	exit
+fi
+if [ "$1" = -h ]
+then
+	help_fct
+	exit
+fi
+if [ "$1" = "-r" ]
+then
+	rm -f ~/.bootmsg
+	exit
+fi
+
+if [ "$1" = "-a" ]
+then
+	msg=$(cat ~/.bootmsg)
+	msg="$msg "
+	if [ -n "$2" ]
+	then
+		base_msg="$2"
+	else
+		read base_msg
+	fi
+else
+	if [ -n "$1" ]
+	then
+		base_msg="$1"
+	else
+		read base_msg
+	fi
+fi
+msg=$msg$base_msg
+echo $msg > ~/.bootmsg

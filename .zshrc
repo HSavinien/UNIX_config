@@ -40,6 +40,7 @@ alias showbug="cat known_bugs| grep -v '(solved)'"
 #makefile creation alias
 alias mf-saveold="mv ./Makefile ./.Makefile.old"
 alias mf-addsrc='ls -tr *.c | cat -e | sed "s/\\$/ \\\/g" >> Makefile'
+alias makefile="cp -iv ~/Desktop/library/template/Makefile ./Makefile"
 
 #single letter alias
 alias q="exit"
@@ -98,3 +99,5 @@ export HISTFILE=~/.zsh_history
 export HISTSIZE=10000
 export SAVEHIST=${HISTSIZE}
 export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
+
+showbootmsg

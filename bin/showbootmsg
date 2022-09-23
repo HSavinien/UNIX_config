@@ -1,0 +1,6 @@
+#!/bin/bash
+
+if [ -r ~/.bootmsg ]
+then
+	cat ~/.bootmsg
+fi

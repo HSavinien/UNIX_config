@@ -18,7 +18,7 @@ map <F2> i#include <string.h><cr>#include <stdlib.h><cr>#include <unistd.h><cr>#
 map <F3> oint	main(int ac, char **av, char **env)<cr>{<cr>if (ac < 2)<cr>return(printf("error args\nusage : <%s> <>", av[0]));<cr><cr>}
 
 "abbreviate :
-iab //d dprintf(2, "\n");//DEBUG
+iab //d dprintf(2, "debug(%sl%d):\n", __FUNCTION__,__LINE__);//DEBUG
 
 "=============================================================================="
 "									LaTeX
