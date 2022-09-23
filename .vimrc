@@ -6,6 +6,8 @@ set nu
 set colorcolumn=81
 set ruler
 set showcmd
+set tabstop=4
+set shiftwidth=0
 
 "=============================================================================="
 "								shortcut									   "
