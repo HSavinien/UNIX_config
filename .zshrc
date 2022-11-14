@@ -1,17 +1,27 @@
 #page de personalisation du terminal zsh
-
 #custom interface
-#PS1="%n@%m:%~:[%T]$ "
-PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;94m%}%3~%{\e[0m%}:%{\e[0;1;7;32m%}[%T]%{\e[0m%}\$ '
+if [ -z $RCOLOR ]
+then 
+	export RCOLOR=$(echo $RANDOM % 6 + 91 | bc)
+else 
+	export RCOLOR=$(echo "($RCOLOR % 6) + 91" | bc)
+fi
+#PS1="%n@%m:%~:[%T]$ "#colorless prompt
+PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1;7;32m%}[%T]%{\e[0m%}\$ '
+
+alias red="PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1;7;31m%}[%T]%{\e[0m%}\$ '"
+alias green="PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1;7;32m%}[%T]%{\e[0m%}\$ '"
+alias blue="PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1;7;34;47m%}[%T]%{\e[0m%}\$ '"
+alias yellow="PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1;7;33m%}[%T]%{\e[0m%}\$ '"
 
 #vars
 export PATH=$PATH:$HOME/bin
-work="~/Desktop/WiP/philosopher"
+work="~/Desktop/WiP/cub3d"
 #alias
 
 alias sep="echo '\e[33m=========================================================================================\e[m'"
 
-alias work="clear ; cd $work" #==================================WORK
+alias work="clear ; cd $work"
 alias lib="cd ~/Desktop/library/ && ls"
 alias Sep="clear ; sep ; sep"
 alias push="git push origin master"
@@ -22,7 +32,7 @@ alias compc="Sep ; gcc -Wall -Werror -Wextra"
 alias mlxcomp="Sep ; gcc -Wall -Wextra -Werror -I /usr/local/include/ -L /usr/local/lib/ -lmlx -framework OpenGL -framework AppKit "
 alias Norm="clear ; norm | grep -v OK"
 alias home="cd ~"
-alias gtest="cd ~/goinfre/"
+alias gtest="cd ~/goinfre/ && red && clear"
 alias example="cd ~/Desktop/examples ; sep ; clear ; ls"
 alias custom="vim ~/.zshrc ; source ~/.zshrc"
 alias re="source ~/.zshrc ; clear ; sep ; echo 'reloaded zsh config file' ; sep"
@@ -33,9 +43,7 @@ alias evening="git add * && git commit -m 'end of day' && (git push origin maste
 alias evac="git add * && git commit -m 'this is an emergency commit' && (git push origin master ; git push perso master)"
 alias nbcommit="git log | grep Author: | wc -l"
 alias zouii="curl parrot.live"
-alias guillaume="echo 'Bonjour, comment vas-tu ?'"
-alias chloe="echo 'Pas, toi !'"
-alias showbug="cat known_bugs| grep -v '(solved)'"
+alias glast="git log -1"
 
 #makefile creation alias
 alias mf-saveold="mv ./Makefile ./.Makefile.old"
@@ -61,7 +69,6 @@ alias la="ls -AG"
 alias ll="ls -lhG"
 alias lla="ls -AGlh"
 alias ls="ls -G"
-alias glast="git log -1"
 
 #big finger alias
 alias vin=vim
@@ -71,9 +78,13 @@ alias vin=vim
 alias chklst="Sep ; checklist.sh"
 
 #project modification (might only work in certain dir)
-#push swap
 
 alias visu="""python3 pyviz.py `ruby -e "puts (0..100).to_a.shuffle.join(' ')"`"""
+alias netp="cd ~/Desktop/WiP/net_practice"
+new_map(){
+	cp ~/Desktop/WiP/cub3d/maps/template.cub $1.cub
+	vim $1.cub
+}
 
 #command and script to execute on launch
 

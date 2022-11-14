@@ -2,5 +2,6 @@
 
 if [ -r ~/.bootmsg ]
 then
+	echo $'\033[4;5;33mBOOT MESSAGE :\033[0;95m'
 	cat ~/.bootmsg
 fi
