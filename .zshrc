@@ -16,12 +16,12 @@ alias yellow="PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1
 
 #vars
 export PATH=$PATH:$HOME/bin
-work="~/Desktop/WiP/cub3d"
+work="~/Desktop/WiP/cpp_pool/cpp04"
 #alias
 
 alias sep="echo '\e[33m=========================================================================================\e[m'"
 
-alias work="clear ; cd $work"
+alias wp="clear ; cd $work ; green"
 alias lib="cd ~/Desktop/library/ && ls"
 alias Sep="clear ; sep ; sep"
 alias push="git push origin master"
@@ -44,6 +44,20 @@ alias evac="git add * && git commit -m 'this is an emergency commit' && (git pus
 alias nbcommit="git log | grep Author: | wc -l"
 alias zouii="curl parrot.live"
 alias glast="git log -1"
+alias disp_storage="du -csh * | sort -rh"
+
+#before I learn to load template in vim :
+mkclass(){
+	if [ -z $1 ]
+	then
+		echo "give the name of the class to create"
+		return
+	fi
+	cat $HOME/Desktop/library/template/Class.hpp | 
+		sed s/Class/$1/g > $1.hpp
+	cat $HOME/Desktop/library/template/Class.cpp | 
+		sed s/Class/$1/g > $1.cpp
+}
 
 #makefile creation alias
 alias mf-saveold="mv ./Makefile ./.Makefile.old"
@@ -79,16 +93,25 @@ alias chklst="Sep ; checklist.sh"
 
 #project modification (might only work in certain dir)
 
-alias visu="""python3 pyviz.py `ruby -e "puts (0..100).to_a.shuffle.join(' ')"`"""
+alias visu='""python3 pyviz.py `ruby -e "puts (0..100).to_a.shuffle.join(' ')"`""'
 alias netp="cd ~/Desktop/WiP/net_practice"
 new_map(){
 	cp ~/Desktop/WiP/cub3d/maps/template.cub $1.cub
 	vim $1.cub
 }
 
-#command and script to execute on launch
+#functions
+stfu(){
+	while [ 1 ]
+	do
+		pkill -i $1 # && say "shut up $1"
+		sleep 1
+	done &
+}
 
-work
+#command and script to execute on launch
+#wp
+defaults write com.apple.CrashReporter DialogType none #disable crash repport. replace none by crashreport to reverse
 
 export PATH=$PATH:/Users/tmongell/.brew/bin:/Users/tmongell/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
 
@@ -111,4 +134,8 @@ export HISTSIZE=10000
 export SAVEHIST=${HISTSIZE}
 export PROMPT_COMMAND="history -a; history -n; ${PROMPT_COMMAND}"
 
+export PATH=$PATH:$HOME/Desktop/PiscineStalker/connectors
+
+
 showbootmsg
+stty sane
