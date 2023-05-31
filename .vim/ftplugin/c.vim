@@ -1,3 +1,4 @@
+if exists("b:cpp_file") | finish | endif
 
 "=============================================================================="
 "								shortcut									   "
@@ -13,5 +14,4 @@ map <F3> oint	main(int ac, char **av)<cr>{<cr>if (ac < 2)<cr>return(printf("erro
 iab //d dprintf(2, "\n");//DEBUG<Esc>11hi
 iab //D dprintf(2, "debug(%s:%d):\n", __FUNCTION__,__LINE__);//DEBUG<Esc>34hi
 
-iab ih #include <cub3d.h>
-"change repo name according to project"
+iab <expr> ih '#include <' . substitute(system('basename $(git rev-parse --show-toplevel 2>/dev/null \|\| pwd) 2>/dev/null'), '\n', '.h>', '')

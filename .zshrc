@@ -1,4 +1,4 @@
-#page de personalisation du terminal zsh
+ork="~/Desktop/WiP/webserv"
 #custom interface
 if [ -z $RCOLOR ]
 then 
@@ -7,7 +7,7 @@ else
 	export RCOLOR=$(echo "($RCOLOR % 6) + 91" | bc)
 fi
 #PS1="%n@%m:%~:[%T]$ "#colorless prompt
-PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1;7;32m%}[%T]%{\e[0m%}\$ '
+PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%~%{\e[0m%}:%{\e[0;1;7;32m%}[%T]%{\e[0m%}\$ '
 
 alias red="PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1;7;31m%}[%T]%{\e[0m%}\$ '"
 alias green="PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1;7;32m%}[%T]%{\e[0m%}\$ '"
@@ -16,7 +16,6 @@ alias yellow="PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1
 
 #vars
 export PATH=$PATH:$HOME/bin
-work="~/Desktop/WiP/cpp_pool/cpp04"
 #alias
 
 alias sep="echo '\e[33m=========================================================================================\e[m'"
@@ -35,7 +34,7 @@ alias home="cd ~"
 alias gtest="cd ~/goinfre/ && red && clear"
 alias example="cd ~/Desktop/examples ; sep ; clear ; ls"
 alias custom="vim ~/.zshrc ; source ~/.zshrc"
-alias re="source ~/.zshrc ; clear ; sep ; echo 'reloaded zsh config file' ; sep"
+alias re="clear ; unalias -a ; source ~/.zshrc && (sep ; echo 'reloaded zsh config file' ; sep) || echo $'\033[1;31m cannot reload zsh config file\033[0m'"
 alias gstatus="git status"
 alias piscine="cd ~/Desktop/Piscine ; clear ; ls"
 alias mk="mkdir"
@@ -55,8 +54,10 @@ mkclass(){
 	fi
 	cat $HOME/Desktop/library/template/Class.hpp | 
 		sed s/Class/$1/g > $1.hpp
+	vim -c Stdheader -c x $1.hpp
 	cat $HOME/Desktop/library/template/Class.cpp | 
 		sed s/Class/$1/g > $1.cpp
+	vim -c Stdheader -c x $1.cpp
 }
 
 #makefile creation alias
@@ -83,10 +84,12 @@ alias la="ls -AG"
 alias ll="ls -lhG"
 alias lla="ls -AGlh"
 alias ls="ls -G"
+alias python=python3.10
+alias py=python3.10
+alias pip=pip3.10
 
 #big finger alias
 alias vin=vim
-
 
 #script alias (to call them without .sh)
 alias chklst="Sep ; checklist.sh"
