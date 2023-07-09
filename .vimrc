@@ -13,6 +13,8 @@ set shiftwidth=0
 
 let mapleader="\\"
 
+map <leader>/ :noh<cr>
+
 "comment/uncomment all debug line
 map <leader>h :g/\/\/debug/s/^/\/\/<cr>:noh<cr>
 map <leader>s :g/^\s*\/\/.*\/\/debug$/s/^\/\///<cr>:noh<cr>

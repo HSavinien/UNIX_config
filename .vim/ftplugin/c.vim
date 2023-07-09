@@ -15,3 +15,13 @@ iab //d dprintf(2, "\n");//DEBUG<Esc>11hi
 iab //D dprintf(2, "debug(%s:%d):\n", __FUNCTION__,__LINE__);//DEBUG<Esc>34hi
 
 iab <expr> ih '#include <' . substitute(system('basename $(git rev-parse --show-toplevel 2>/dev/null \|\| pwd) 2>/dev/null'), '\n', '.h>', '')
+
+"functions
+
+function! PartitionLine(part)
+	let dash_count = 80 - (strlen(a:part) * 2) - 4
+	let line = '/*' . a:part . repeat('-', dash_count) . a:part . '*/'
+	return line
+endfunction
+iab //p <c-r>=PartitionLine(input('part name: '))<CR>
+map <leader>p i<c-r>=PartitionLine(input('part name: '))<CR><esc>

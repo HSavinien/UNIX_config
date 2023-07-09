@@ -1,4 +1,4 @@
-ork="~/Desktop/WiP/webserv"
+work="~/Desktop/WiP/webserv"
 #custom interface
 if [ -z $RCOLOR ]
 then 
@@ -16,6 +16,8 @@ alias yellow="PS1=$'%{\e[1m%}%n@%m:%{\e[0;3;4;'$RCOLOR$'m%}%3~%{\e[0m%}:%{\e[0;1
 
 #vars
 export PATH=$PATH:$HOME/bin
+export LSCOLORS="Gxfxcxdxbxegedabagacad" #see ls(1)
+export APP_CACHE="$HOME/Library/Caches:$HOME/Library/Application Support/Slack/Service Worker/CacheStorage:$HOME/Library/Application Support/Slack/Cache:$HOME/Library/Application Support/Code/CachedData"
 #alias
 
 alias sep="echo '\e[33m=========================================================================================\e[m'"
@@ -43,7 +45,8 @@ alias evac="git add * && git commit -m 'this is an emergency commit' && (git pus
 alias nbcommit="git log | grep Author: | wc -l"
 alias zouii="curl parrot.live"
 alias glast="git log -1"
-alias disp_storage="du -csh * | sort -rh"
+alias dus="du -csh * | sort -rh"
+alias go=' echo cd $(pwd) | pbcopy'
 
 #before I learn to load template in vim :
 mkclass(){
@@ -116,7 +119,7 @@ stfu(){
 #wp
 defaults write com.apple.CrashReporter DialogType none #disable crash repport. replace none by crashreport to reverse
 
-export PATH=$PATH:/Users/tmongell/.brew/bin:/Users/tmongell/.brew/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/munki
+export PATH=$PATH:$HOME/.brew/bin:/usr/local/munki
 
 #troll
 #PS1=$PS1$'%{\e[30m%}'
