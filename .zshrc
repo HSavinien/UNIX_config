@@ -1,3 +1,6 @@
+source ~/.zshrc_default
+
+
 work="~/Desktop/WiP/webserv"
 #custom interface
 if [ -z $RCOLOR ]
@@ -19,6 +22,9 @@ export PATH=$PATH:$HOME/bin
 export LSCOLORS="Gxfxcxdxbxegedabagacad" #see ls(1)
 export APP_CACHE="$HOME/Library/Caches:$HOME/Library/Application Support/Slack/Service Worker/CacheStorage:$HOME/Library/Application Support/Slack/Cache:$HOME/Library/Application Support/Code/CachedData"
 #alias
+
+alias pbcopy="xclip -selection clipboard"
+alias pbpast="xclip -selection clipboard -o"
 
 alias sep="echo '\e[33m=========================================================================================\e[m'"
 
@@ -117,7 +123,7 @@ stfu(){
 
 #command and script to execute on launch
 #wp
-defaults write com.apple.CrashReporter DialogType none #disable crash repport. replace none by crashreport to reverse
+#defaults write com.apple.CrashReporter DialogType none #disable crash repport. replace none by crashreport to reverse
 
 export PATH=$PATH:$HOME/.brew/bin:/usr/local/munki
 
