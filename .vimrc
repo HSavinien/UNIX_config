@@ -4,11 +4,16 @@ source /usr/share/vim/vimrc
 
 syntax on
 set nu
+set hlsearch
+set autoindent
 set colorcolumn=81
 set ruler
 set showcmd
 set mouse=a
+set tabstop=4
 set shiftwidth=0
+set noexpandtab
+
 
 
 let mapleader="\\"
@@ -27,4 +32,3 @@ map P !!pbpaste<cr>
 filetype plugin on
 filetype on
 autocmd BufRead,BufNewFile *.tpp set filetype=cpp
-
